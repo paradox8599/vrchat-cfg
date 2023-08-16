@@ -1,9 +1,8 @@
-import Greet from "./greet";
+import Greet from "@/widgets/greet";
 
 export default function Home() {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      Tauri
       <Greet />
     </div>
   );

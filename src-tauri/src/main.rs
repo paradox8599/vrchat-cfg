@@ -1,9 +1,17 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use anyhow::Result;
+use err::AppError;
+
+pub mod cfg;
+pub mod dirs;
+pub mod err;
+pub mod traits;
+
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}!", name)
+fn greet() -> Result<String, AppError> {
+    dirs::get_cfg_dir()
 }
 
 fn main() {

@@ -6,7 +6,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "tauri-app",
+    "productName": "vrchat-cfg",
     "version": "0.1.0"
   },
   "tauri": {
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "io.paradox8599.vrchat-cfg",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -57,9 +57,10 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "tauri-app",
+        "title": "VRChat Config",
         "width": 800
       }
     ]
   }
 }
+  
