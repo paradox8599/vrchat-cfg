@@ -2,6 +2,8 @@ use crate::{err::AppError, traits::Json};
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 
+// https://docs.vrchat.com/docs/configuration-file
+
 #[derive(Serialize, Deserialize, Debug, Default)]
 pub struct Config {
     pub cache_directory: Option<PathBuf>,
