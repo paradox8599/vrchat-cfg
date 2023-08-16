@@ -18,12 +18,10 @@ pub fn get_cfg_dir() -> Result<String, AppError> {
         .join("VRChat")
         .join("vrchat");
 
+    let pstr = vrchat_path.to_string_lossy().to_string();
     match vrchat_path {
-        p if p.is_dir() => Ok(p
-            .to_str()
-            .ok_or(AppError::PathNonUTF8(p.to_string_lossy().to_string()))?
-            .to_string()),
-        p => Err(AppError::PathNotFound(p.to_string_lossy().to_string())),
+        p if p.is_dir() => Ok(p.to_str().ok_or(AppError::PathNonUTF8(pstr))?.to_string()),
+        _ => Err(AppError::PathNotFound(pstr)),
     }
 }
 
