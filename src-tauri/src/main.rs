@@ -1,16 +1,24 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use err::AppError;
 
 pub mod cfg;
-pub mod dirs;
+pub mod ops;
 pub mod err;
 pub mod traits;
 
+use err::AppError;
+use cfg::Config;
+use traits::Json;
+
 #[tauri::command]
 fn greet() -> Result<String, AppError> {
-    dirs::get_cfg_dir()
+    let mut cfg = Config::load().unwrap();
+    if let Some(size) = &mut cfg.cache_size {
+        *size -= 1;
+    }
+    cfg.save().unwrap();
+    Ok(cfg.to_json())
 }
 
 fn main() {
