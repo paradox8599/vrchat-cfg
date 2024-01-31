@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
+use crate::traits::Json;
+
 #[derive(Error, Debug, Deserialize, Serialize)]
 #[serde(tag = "error", content = "value")]
 pub enum AppError {
@@ -35,8 +37,13 @@ pub enum AppError {
     CacheExpiryDelayTooSmall(u16),
 }
 
-impl AppError {
-    pub fn to_json(&self) -> String {
+impl Json for AppError {
+    fn to_json(&self) -> String {
         serde_json::to_string(self).unwrap()
+    }
+
+    fn from_json(_json: &str) -> Result<Self, AppError>
+    {
+        todo!()
     }
 }

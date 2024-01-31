@@ -127,6 +127,6 @@ impl Config {
         self.cache_expiry_delay = Some(delay);
         Ok(())
     }
-    
+
     // More setters to be added
 }

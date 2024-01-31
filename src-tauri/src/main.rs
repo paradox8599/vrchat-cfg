@@ -13,11 +13,11 @@ use traits::Json;
 
 #[tauri::command]
 fn greet() -> Result<String, AppError> {
-    let mut cfg = Config::load().unwrap();
+    let mut cfg = Config::load()?;
     if let Some(size) = &mut cfg.cache_size {
         *size -= 1;
     }
-    cfg.save().unwrap();
+    cfg.save()?;
     Ok(cfg.to_json())
 }
 
